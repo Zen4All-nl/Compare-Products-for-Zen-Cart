@@ -6,16 +6,18 @@
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_product_list.php 15589 2010-02-27 15:03:49Z ajeh $
+ * @version $Id: picaflor-azul Wed Jan 13 18:44:28 2016 -0500 New in v1.5.5 $
  * @modification: added in the initial compare view 2011-01-28 5:23:52MT brit (docreativedesign.com) $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
 
-<h1 id="productListHeading"><?php echo $breadcrumb->last(); ?></h1>
+<div id="cat-top" class="group">
+<div id="cat-left" class="back">
+<h1 id="productListHeading"><?php echo $current_categories_name; ?></h1>
 
 <?php
 if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
@@ -27,27 +29,31 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
   }
 } // categories_image
 ?>
+</div>
 
 <?php
 // categories_description
     if ($current_categories_description != '') {
 ?>
 <div id="indexProductListCatDescription" class="content"><?php echo $current_categories_description;  ?></div>
-
 <?php } // categories_description ?>
+</div>
+
+<?php if ($listing->RecordCount()) { ?>
+<div id="filter-wrapper" class="group">
+<?php } ?>
 
 <?php
   $check_for_alpha = $listing_sql;
   $check_for_alpha = $db->Execute($check_for_alpha);
 
-  if ($do_filter_list || ($check_for_alpha->RecordCount() > 0 && PRODUCT_LIST_ALPHA_SORTER == 'true')) {
+  if ($do_filter_list || isset($_GET['alpha_filter_id']) || ($check_for_alpha->RecordCount() > 0 && PRODUCT_LIST_ALPHA_SORTER == 'true')) {
   $form = zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get') . '<label class="inputLabel">' .TEXT_SHOW . '</label>';
 ?>
 
 <?php
   echo $form;
   echo zen_draw_hidden_field('main_page', FILENAME_DEFAULT);
-  echo zen_hide_session_id();
 ?>
 <?php
   // draw cPath if known
@@ -80,36 +86,56 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
     echo zen_draw_pull_down_menu('filter_id', $options, (isset($_GET['filter_id']) ? $_GET['filter_id'] : ''), 'onchange="this.form.submit()"');
   }
 
+
+
+
   // draw alpha sorter
-  require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING_ALPHA_SORTER));
+require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING_ALPHA_SORTER));
 ?>
 </form>
 <?php
   }
 ?>
-<br class="clearBoth" />
 
+<?php // end wrapper ?>
+<?php if ($listing->RecordCount()) { ?>
+</div>
+<?php } ?>
+<?php /* BOF Zen4All Compare Products 1 of 1 */ ?>
 <div id="compareResult">
-  <div class="back compareText"><b><?php echo COMPARE_DEFAULT; ?></b><br /><?php echo COMPARE_COUNT_START . COMPARE_VALUE_COUNT . COMPARE_COUNT_END; ?></div>
+  <div class="back compareText"><strong><?php echo COMPARE_DEFAULT; ?></strong>&nbsp;<?php echo COMPARE_COUNT_START . COMPARE_VALUE_COUNT . COMPARE_COUNT_END; ?></div>
   <div id="compareProducts">
-<?php
-if (!empty($_SESSION['compare'])) {
-  foreach ($_SESSION['compare'] as $value) {
-    $product_comp_image = $db->Execute(
-        "SELECT p.products_id, p.master_categories_id, pd.products_name, p.products_image
-         FROM " . TABLE_PRODUCTS . " p
-         LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
-         ON pd.products_id=p.products_id
-         WHERE p.products_id='".$value."'");
-         
-    $comp_images .= '<div class="compareAdded"><a href="' . zen_href_link(zen_get_info_page($product_comp_image->fields['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($product_comp_image->fields['master_categories_id'])) . '&products_id=' . $product_comp_image->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $product_comp_image->fields['products_image'], $product_comp_image->fields['products_name'], '', '35', 'class="listingProductImage"') . '</a><div>'.'<a onclick="javascript: compareNew('.$product_comp_image->fields['products_id'].', \'remove\')" alt="remove">'.COMPARE_REMOVE.'</a>'.'</div></div>';
-  }
-  echo '<div id="compareMainWrapper"><div class="compareAdded compareButton">'.'<a href="index.php?main_page=compare" alt="compare">'.'<span class="cssButton">'.COMPARE_DEFAULT.'</span></a></div>'.$comp_images.'</div>';
-  echo '<br class="clearBoth" />';
-}
-?>
+      <?php
+      if (!empty($_SESSION['compare'])) {
+        ?>
+      <div id="compareMainWrapper">
+        <div class="compareAdded compareButton">
+          <a href="index.php?main_page=compare" title="compare"><span class="cssButton" class="btn btn-primary" role="button"><?php echo COMPARE_DEFAULT; ?></span></a>
+        </div>
+        <?php
+        foreach ($_SESSION['compare'] as $value) {
+          $product_comp_image = $db->Execute("SELECT p.products_id, p.master_categories_id, pd.products_name, p.products_image
+                                              FROM " . TABLE_PRODUCTS . " p
+                                              LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id
+                                              WHERE p.products_id = " . (int)$value);
+          ?>
+          <div class="compareAdded">
+            <a href="<?php echo zen_href_link(zen_get_info_page($product_comp_image->fields['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($product_comp_image->fields['master_categories_id'])) . '&products_id=' . $product_comp_image->fields['products_id']); ?>"><?php echo zen_image(DIR_WS_IMAGES . $product_comp_image->fields['products_image'], $product_comp_image->fields['products_name'], '', '35', 'class="listingProductImage"'); ?></a>
+            <div>
+              <button type="button" onclick="compareNew('<?php echo $product_comp_image->fields['products_id']; ?>', 'removeProduct')" title="remove" class="btn btn-default btn-xs"><?php echo COMPARE_REMOVE; ?></button>
+            </div>
+          </div>
+          <?php
+        }
+        ?>
+      </div>
+      <br class="clearBoth" />
+      <?php
+    }
+    ?>
+  </div>
 </div>
-</div>
+<?php /* EOF Zen4All Compare Products 1 of 1 */ ?>
 
 <?php
 /**
