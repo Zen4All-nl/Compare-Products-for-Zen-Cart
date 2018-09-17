@@ -7,7 +7,6 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: picaflor-azul Mon Feb 15 13:59:01 2016 -0500 New in v1.5.5 $
- * @modification: added in the checkboxes for the comparison system 2011-01-28 5:23:52MT brit (docreativedesign.com) $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -58,6 +57,13 @@ for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
     $lc_align = 'center';
     $zc_col_count_description++;
     break;
+  /* BOF Zen4All Compare Products 1 of 2 */
+    case 'PRODUCT_LIST_COMPARE':
+    $lc_text = TABLE_HEADING_COMPARE;
+    $lc_align = '';
+    $zc_col_count_description++;
+    break;
+  /* EOF Zen4All Compare Products 1 of 2 */
   }
 
   if ( ($column_list[$col] != 'PRODUCT_LIST_IMAGE') ) {
@@ -159,15 +165,18 @@ if ($listing_split->number_of_rows > 0) {
         if ($listing->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
           $lc_text = '';
         } else {
-        /* BOF Products Compare 1 of 1 */
           if (isset($_GET['manufacturers_id'])) {
-            $lc_text = '<div class="list-image"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . (($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? zen_get_generated_category_path_rev($_GET['filter_id']) : ($_GET['cPath'] > 0 ? zen_get_generated_category_path_rev($_GET['cPath']) : zen_get_generated_category_path_rev($listing->fields['master_categories_id']))) . '&products_id=' . $listing->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $listing->fields['products_image'], $listing->fields['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT, 'class="listingProductImage"') . '</a></div>' . '<div class="compareSelect"><button type="button" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>  <a href="' . zen_href_link('compare') . '" title="compare">' . COMPARE_DEFAULT . '</a></div>';
+            $lc_text = '<div class="list-image"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . (($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? zen_get_generated_category_path_rev($_GET['filter_id']) : ($_GET['cPath'] > 0 ? zen_get_generated_category_path_rev($_GET['cPath']) : zen_get_generated_category_path_rev($listing->fields['master_categories_id']))) . '&products_id=' . $listing->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $listing->fields['products_image'], $listing->fields['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT, 'class="listingProductImage"') . '</a></div>';
           } else {
-            $lc_text = '<div class="list-image"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . (($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? zen_get_generated_category_path_rev($_GET['filter_id']) : ($_GET['cPath'] > 0 ? zen_get_generated_category_path_rev($_GET['cPath']) : zen_get_generated_category_path_rev($listing->fields['master_categories_id']))) . '&products_id=' . $listing->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $listing->fields['products_image'], $listing->fields['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT, 'class="listingProductImage"') . '</a></div>' . '<div class="compareSelect"><button type="button" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>  <a href="' . zen_href_link('compare') . '" title="compare">' . COMPARE_DEFAULT . '</a></div>';
-        /* EOF Products Compare 1 of 1 */
+            $lc_text = '<div class="list-image"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . (($_GET['manufacturers_id'] > 0 and $_GET['filter_id']) > 0 ? zen_get_generated_category_path_rev($_GET['filter_id']) : ($_GET['cPath'] > 0 ? zen_get_generated_category_path_rev($_GET['cPath']) : zen_get_generated_category_path_rev($listing->fields['master_categories_id']))) . '&products_id=' . $listing->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $listing->fields['products_image'], $listing->fields['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT, 'class="listingProductImage"') . '</a></div>';
           }
         }
         break;
+        /* BOF Zen4All Compare Products 2 of 2 */
+        case 'PRODUCT_LIST_COMPARE':
+          $lc_text = '<div id="compareSelectProductId_' . $listing->fields['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $listing->fields['products_id'] . '" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>  <a href="' . zen_href_link('compare') . '" title="compare">' . COMPARE_DEFAULT . '</a></div>';
+          break;
+        /* EOF Zen4All Compare Products 2 of 2 */
       }
 
       $list_box_contents[$rows][$col] = array('align' => $lc_align,

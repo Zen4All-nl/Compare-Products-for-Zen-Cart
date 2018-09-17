@@ -9,51 +9,39 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: main_template_vars.php 2011-01-28 5:23:52MT brit (docreativedesign.com) $
  */
-if (!empty($_SESSION['compare'])) {
+if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
   $compare_info = array();
   $result = array();
-  $action = $_GET['remove'];
+  $removeProduct = $_GET['removeProduct'];
 
-  if ($action > 0) {
-    $removed_compare_array = array();
-    foreach ($_SESSION['compare'] as $value) {
-      if ($value != $action) {
-        $removed_compare_array[] = $value;
+  if ($removeProduct > 0) {
+    $removedCompareArray = array();
+    foreach ($_SESSION['compareProducts'] as $compareProductId) {
+      if ($compareProductId != $removeProduct) {
+        $removedCompareArray[] = $compareProductId;
       }
-      $_SESSION['compare'] = $removed_compare_array;
+      $_SESSION['compareProducts'] = $removedCompareArray;
     }
   }
 
   // loop session for products
-  foreach ($_SESSION['compare'] as $value) {
-    if (!empty($value)) {
-      $products_compare_query = "SELECT p.products_id, p.products_image, pd.products_name,
-                                        p.master_categories_id, pd.products_description, p.products_price,
-                                        p.products_model, p.products_weight, p.products_quantity, p.manufacturers_id
-                                 FROM " . TABLE_PRODUCTS . " p
-                                 LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON p.products_id = pd.products_id
-                                 WHERE p.products_status = 1
-                                 AND p.products_id = " . (int)$value . "
-                                 AND pd.language_id = " . (int)$_SESSION['languages_id'];
+  if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
+    foreach ($_SESSION['compareProducts'] as $value) {
+      $productsQuery = "SELECT p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_weight, p.master_categories_id,
+                               pd.products_name, pd.products_description,
+                               m.manufacturers_name
+                        FROM " . TABLE_PRODUCTS . " p
+                        LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON p.products_id = pd.products_id
+                        LEFT JOIN " . TABLE_MANUFACTURERS . " m ON p.manufacturers_id = m.manufacturers_id
+                        WHERE p.products_status = 1
+                        AND p.products_id = " . (int)$value . "
+                        AND pd.language_id = " . (int)$_SESSION['languages_id'];
 
-      $products_compare = $db->Execute($products_compare_query);
-      $products_manufacturer = $db->Execute("SELECT manufacturers_name
-                                             FROM " . TABLE_MANUFACTURERS . "
-                                             WHERE manufacturers_id = " . (int)$products_compare->fields['manufacturers_id']
-      );
-      $result[] = [
-        'products_id' => $products_compare->fields['products_id'],
-        'products_image' => $products_compare->fields['products_image'],
-        'products_name' => $products_compare->fields['products_name'],
-        'master_categories_id' => $products_compare->fields['master_categories_id'],
-        'products_description' => $products_compare->fields['products_description'],
-        'products_price' => $products_compare->fields['products_price'],
-        'products_model' => $products_compare->fields['products_model'],
-        'products_weight' => $products_compare->fields['products_weight'],
-        'products_quantity' => $products_compare->fields['products_quantity'],
-        'manufacturers_id' => $products_manufacturer->fields['manufacturers_id'],
-        'manufacturers_name' => $products_manufacturer->fields['manufacturers_name']
-      ];
+      $products = $db->Execute($productsQuery);
+
+      foreach ($products->fields as $key => $item) {
+        $compareResult[$value][$key] = $item;
+      }
     }
   }
 }

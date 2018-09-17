@@ -8,13 +8,14 @@
       }).done(function (returnData) {
           console.log(returnData);
           $('#compareProducts').html(returnData['data']);
+          $('#buttonCompareSelectProductId_' + productId).replaceWith(returnData['button']);
       });
   }
   compareResultDiv = '';
   compareResultDiv += '<div id="compareResult" class="group">' + "\n";
   compareResultDiv += '  <div class="back compareText"><strong><?php echo COMPARE_DEFAULT; ?></strong> <?php echo COMPARE_COUNT_START . COMPARE_VALUE_COUNT . COMPARE_COUNT_END; ?></div>' + "\n";
   compareResultDiv += '    <div id="compareProducts">' + "\n";
-<?php if (!empty($_SESSION['compare'])) { ?>
+<?php if (isset($_SESSION['compareProducts']) && !empty($_SESSION['compareProducts'])) { ?>
   compareResultDiv += '      <div id="compareMainWrapper">' + "\n";
   compareResultDiv += '        <div class="compareAdded compareButton">' + "\n";
   compareResultDiv += '          <a href="index.php?main_page=compare" title="compare"><span class="cssButton" class="btn btn-primary" role="button"><?php echo COMPARE_DEFAULT; ?></span></a>' + "\n";

@@ -4,11 +4,10 @@
  * zcAjaxCompareProducts.php
  * ajax call to show products selected for comparison
  *
- * @package general
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ajax_compare.php 00001 2011-01-28 5:23:52MT brit (docreativedesign.com) $
+ * @version $Id: zAjaxCompareProducts.php 00001 2018-09-16  Zen4All (https://zen4all.nl)
  */
 class zcAjaxCompareProducts extends base {
 
@@ -20,47 +19,59 @@ class zcAjaxCompareProducts extends base {
 
 // add new products selected
   public function addProduct() {
+    $compareProductsArray = (isset($_SESSION['compareProducts']) ? $_SESSION['compareProducts'] : '');
     $returndata['toApi'] = $_POST;
-    $selected = $_POST['compare_id'];
+    $selected = (int)$_POST['compare_id'];
     $compare_array = array();
     $compare_warning = '';
-    $comp_value_count = count($_SESSION['compare']);
+    $comp_value_count = ($compareProductsArray != '' ? count($compareProductsArray) : 0);
 
-    include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_DEFINE_COMPARE_LANGUAGE);
+    include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/compare.php');
 
     if ($comp_value_count < COMPARE_VALUE_COUNT) {
       $compare_array[] = $selected;
-      foreach ($_SESSION['compare'] as $c) {
-        if ($c != $selected) {
-          $compare_array[] = $c;
+      if ($compareProductsArray != '') {
+        foreach ($compareProductsArray as $compareProduct) {
+          if ($compareProduct != $selected) {
+            $compare_array[] = $compareProduct;
+          }
         }
       }
-      $_SESSION['compare'] = array_unique($compare_array);
+      $_SESSION['compareProducts'] = array_unique($compare_array);
     } else {
       $compare_warning = '<div id="compareWarning">' . COMPARE_WARNING_START . COMPARE_VALUE_COUNT . COMPARE_WARNING_END . '</div>';
     }
-    $result = $this->getProducts($_SESSION['compare']);
+    $result = $this->getProducts($_SESSION['compareProducts']);
+
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'removeProduct\')"><i class="fa fa-minus"></i></button>';
+
     return([
       'data' => $result,
-      'toApi' => $returndata['toApi']
+      'toApi' => $returndata['toApi'],
+      'button' => $button
     ]);
   }
 
 // remove products
   public function removeProduct() {
     $returndata['toApi'] = $_POST;
-    $selected = $_POST['compare_id'];
-    foreach ($_SESSION['compare'] as $rValue) {
+    $selected = (int)$_POST['compare_id'];
+    foreach ($_SESSION['compareProducts'] as $rValue) {
       if ($rValue != $selected) {
         $removed_compare_array[] = $rValue;
       }
-      $_SESSION['compare'] = array_unique($removed_compare_array);
+      if (!empty($_SESSION['compareProducts'])) {
+        $_SESSION['compareProducts'] = array_unique($removed_compare_array);
+      }
     }
 
-    $result = $this->getProducts($_SESSION['compare']);
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>';
+
+    $result = $this->getProducts($_SESSION['compareProducts']);
     return([
       'data' => $result,
-      'toApi' => $returndata['toApi']
+      'toApi' => $returndata['toApi'],
+      'button' => $button
     ]);
   }
 
@@ -68,12 +79,12 @@ class zcAjaxCompareProducts extends base {
     global $db;
     $comp_images = '';
 // return new value for the session
-    foreach ($compareList as $value) {
-      if (!empty($value)) {
+    if (!empty($compareList)) {
+      foreach ($compareList as $value) {
         $product_comp_image = $db->Execute("SELECT p.products_id, p.master_categories_id, pd.products_name, p.products_image
-                                        FROM " . TABLE_PRODUCTS . " p
-                                        LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id
-                                        WHERE p.products_id = " . (int)$value);
+                                            FROM " . TABLE_PRODUCTS . " p
+                                            LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id
+                                            WHERE p.products_id = " . (int)$value);
         $comp_images .= '<div class="compareAdded">';
         $comp_images .= '<a href="' . zen_href_link(zen_get_info_page($product_comp_image->fields['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($product_comp_image->fields['master_categories_id'])) . '&products_id=' . $product_comp_image->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $product_comp_image->fields['products_image'], $product_comp_image->fields['products_name'], '', '35', 'class="listingProductImage"') . '</a>';
         $comp_images .= '<div>';
