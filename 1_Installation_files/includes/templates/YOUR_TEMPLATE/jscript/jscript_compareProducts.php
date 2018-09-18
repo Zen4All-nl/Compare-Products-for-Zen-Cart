@@ -21,7 +21,7 @@
   compareResultDiv += '          <a href="index.php?main_page=compare" title="compare"><span class="cssButton" class="btn btn-primary" role="button"><?php echo COMPARE_DEFAULT; ?></span></a>' + "\n";
   compareResultDiv += '        </div>' + "\n";
   <?php
-  foreach ($_SESSION['compare'] as $value) {
+  foreach ($_SESSION['compareProducts'] as $value) {
     $product_comp_image = $db->Execute("SELECT p.products_id, p.master_categories_id, pd.products_name, p.products_image
                                         FROM " . TABLE_PRODUCTS . " p
                                         LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id
@@ -42,5 +42,23 @@
 
 $(document).ready(function(){
   $('#filter-wrapper').after(compareResultDiv);
+  });
+
+  $(document).ready(function () {
+      var javascript_array = '';
+<?php
+if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
+  $jsCompareProductsArray = json_encode($_SESSION['compareProducts']);
+  ?>
+        javascriptCompareProductsArray = <?php echo $jsCompareProductsArray; ?>;
+  <?php
+}
+?>
+      if (javascriptCompareProductsArray != '') {
+          javascriptCompareProductsArray.forEach(function (productId) {
+              $('#buttonCompareSelectProductId_' + productId).attr('onclick','compare('+productId+',\'removeProduct\')');
+              $('#buttonCompareSelectProductId_' + productId + ' i').removeClass('fa-plus').addClass('fa-minus');
+          });
+      }
   });
 </script>
