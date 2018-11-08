@@ -54,15 +54,17 @@ class zcAjaxCompareProducts extends base {
 
 // remove products
   public function removeProduct() {
-    $returndata['toApi'] = $_POST;
     $selected = (int)$_POST['compare_id'];
-    foreach ($_SESSION['compareProducts'] as $rValue) {
-      if ($rValue != $selected) {
-        $removed_compare_array[] = $rValue;
+    $newCompareArray = [];
+    foreach ($_SESSION['compareProducts'] as $value) {
+      if ($value != $selected) {
+        $newCompareArray[] = $value;
       }
-      if (isset($_SESSION['compareProducts']) && !empty($_SESSION['compareProducts'])) {
-        $_SESSION['compareProducts'] = array_unique($removed_compare_array);
-      }
+    }
+    if (!empty($newCompareArray)) {
+    $_SESSION['compareProducts'] = $newCompareArray;
+    } else {
+      $_SESSION['compareProducts'] = '';
     }
 
     $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT .'</button>';
@@ -70,7 +72,6 @@ class zcAjaxCompareProducts extends base {
     $result = $this->getProducts($_SESSION['compareProducts']);
     return([
       'data' => $result,
-      'toApi' => $returndata['toApi'],
       'button' => $button
     ]);
   }
