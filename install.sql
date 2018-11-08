@@ -1,6 +1,4 @@
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added)
-VALUES ('Max Products to Compare', 'COMPARE_VALUE_COUNT', '4', 'The number of products to compare at one time.', '19', '150', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added)
-VALUES ('Max Products to Compare', 'COMPARE_DESCRIPTION', '150', 'How many characters max to show of the products description.', '19', '151', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added)
-VALUES ('Display Product Compare', 'PRODUCT_LIST_COMPARE', '1', 'Do you want to display the Product compare?', '8', '8', now());
+VALUES ('Max Products to Compare', 'COMPARE_VALUE_COUNT', '4', 'The number of products to compare at one time.', '19', '150', now()),
+       ('Max Products to Compare', 'COMPARE_DESCRIPTION', '150', 'How many characters max to show of the products description.', '19', '151', now()),
+       ('Product Compare', 'DEFINE_COMPARE_STATUS', '1', 'Enable the Product Compare Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '84', '2001-01-01 00:00:00', NOW(), NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');
