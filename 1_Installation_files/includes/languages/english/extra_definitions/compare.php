@@ -12,5 +12,5 @@
   define('COMPARE_REMOVE', 'remove');
   define('COMPARE_COUNT_START', 'up to ');
   define('COMPARE_COUNT_END', ' items');
-  
+
   define('TABLE_HEADING_COMPARE', 'Compare');
