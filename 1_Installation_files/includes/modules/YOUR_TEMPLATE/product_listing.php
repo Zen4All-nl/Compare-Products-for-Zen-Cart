@@ -57,13 +57,6 @@ for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
     $lc_align = 'center';
     $zc_col_count_description++;
     break;
-  /* BOF Zen4All Compare Products 1 of 2 */
-    case 'PRODUCT_LIST_COMPARE':
-    $lc_text = TABLE_HEADING_COMPARE;
-    $lc_align = '';
-    $zc_col_count_description++;
-    break;
-  /* EOF Zen4All Compare Products 1 of 2 */
   }
 
   if ( ($column_list[$col] != 'PRODUCT_LIST_IMAGE') ) {
@@ -172,18 +165,21 @@ if ($listing_split->number_of_rows > 0) {
           }
         }
         break;
-        /* BOF Zen4All Compare Products 2 of 2 */
-        case 'PRODUCT_LIST_COMPARE':
-          $lc_text = '<div id="compareSelectProductId_' . $listing->fields['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $listing->fields['products_id'] . '" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>  <a href="' . zen_href_link('compare') . '" title="compare">' . COMPARE_DEFAULT . '</a></div>';
-          break;
-        /* EOF Zen4All Compare Products 2 of 2 */
       }
 
       $list_box_contents[$rows][$col] = array('align' => $lc_align,
                                               'params' => 'class="productListing-data"',
                                               'text'  => $lc_text);
     }
-
+        /* BOF Zen4All Compare Products 1 of 1 */
+        if (PRODUCT_LIST_COMPARE > 0){
+          $lc_align = '';
+          $lc_text = '<div id="compareSelectProductId_' . $listing->fields['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $listing->fields['products_id'] . '" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button></div>';
+          $list_box_contents[$rows][] = array('align' => $lc_align,
+                                              'params' => 'class="productListing-data"',
+                                              'text'  => $lc_text);
+        }
+        /* EOF Zen4All Compare Products 1 of 1 */
     // add description and match alternating colors
     //if (PRODUCT_LIST_DESCRIPTION > 0) {
     //  $rows++;
