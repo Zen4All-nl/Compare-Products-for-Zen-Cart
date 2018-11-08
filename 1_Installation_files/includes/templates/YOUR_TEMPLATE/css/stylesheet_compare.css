@@ -29,9 +29,13 @@
   padding:17px 0 0 5px;
 }
 
-#compareDefaultMainContent h1 {
+#compareDefaultMainContent h4 {
   font-size:1.2em;
   text-align:center;
+}
+
+#compareDefaultMainContent h4 a {
+  text-decoration: none;
 }
 
 .compareImage {
@@ -39,17 +43,13 @@
 }
 
 #compareDefaultMainContent td {
-  vertical-align:top;
   padding:5px;
-  border-bottom:1px solid #fff;
+  vertical-align: top;
 }
 
 #compareDefaultMainContent th {
-  vertical-align:top;
-  font-weight:bold;
   text-align:left;
   padding:5px 10px 5px 5px;
-  border-bottom:1px solid #fff;
 }
 
 .compareWrapper {

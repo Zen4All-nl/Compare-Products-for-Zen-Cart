@@ -43,7 +43,7 @@ class zcAjaxCompareProducts extends base {
     }
     $result = $this->getProducts($_SESSION['compareProducts']);
 
-    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'removeProduct\')"><i class="fa fa-minus"></i></button>';
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'removeProduct\')"><i class="fa fa-minus"></i> ' . COMPARE_DEFAULT .'</button>';
 
     return([
       'data' => $result,
@@ -60,12 +60,12 @@ class zcAjaxCompareProducts extends base {
       if ($rValue != $selected) {
         $removed_compare_array[] = $rValue;
       }
-      if (!empty($_SESSION['compareProducts'])) {
+      if (isset($_SESSION['compareProducts']) && !empty($_SESSION['compareProducts'])) {
         $_SESSION['compareProducts'] = array_unique($removed_compare_array);
       }
     }
 
-    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i></button>';
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT .'</button>';
 
     $result = $this->getProducts($_SESSION['compareProducts']);
     return([

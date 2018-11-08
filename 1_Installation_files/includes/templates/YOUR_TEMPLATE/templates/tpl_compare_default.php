@@ -19,7 +19,7 @@
       // create our table rows of data
       foreach ($compareResult as $item) {
 
-        $compName .= '<td><h1 class="productGeneral"><a href="' . zen_href_link(zen_get_info_page($item['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($item['master_categories_id'])) . '&products_id=' . $item['products_id']) . '">' . $item['products_name'] . '</a></h1></td>';
+        $compName .= '<td><h4 class="productGeneral"><a href="' . zen_href_link(zen_get_info_page($item['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($item['master_categories_id'])) . '&products_id=' . $item['products_id']) . '">' . $item['products_name'] . '</a></h4></td>';
         $compImage .= '<td><div class="compareImage">' . '<a href="' . zen_href_link(zen_get_info_page($item['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($item['master_categories_id'])) . '&products_id=' . $item['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $item['products_image'], $item['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT, 'class="listingProductImage"') . '</a>' . '</div></td>';
         $compDescription .= '<td>' . zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($item['products_id'], $_SESSION['languages_id']))), COMPARE_DESCRIPTION) . '</td>';
         $compModel .= '<td>' . $item['products_model'] . '</td>';
@@ -27,7 +27,7 @@
         $compQuantity .= '<td>' . $item['products_quantity'] . '</td>';
         $compPrice .= '<td>' . ((zen_has_product_attributes_values($item['products_id']) && $flag_show_product_info_starting_at == 1) ? TEXT_BASE_PRICE : '') . zen_get_products_display_price($item['products_id']) . '</td>';
         $compManufacturer .= '<td>' . $item['manufacturers_name'] . '</td>';
-        $compRemove .= '<td><a href="' . zen_href_link('compare', 'removeProduct=' . $item['products_id']) . '" alt="remove">' . COMPARE_REMOVE . '</a></td>';
+        $compRemove .= '<td style="text-align:center;"><a href="' . zen_href_link('compare', 'removeProduct=' . $item['products_id']) . '" alt="remove" class="btn btn-default btn-sm">' . COMPARE_REMOVE . '</a></td>';
       }
       ?>
       <table>
