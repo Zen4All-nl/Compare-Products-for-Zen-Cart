@@ -172,7 +172,7 @@ if ($listing_split->number_of_rows > 0) {
                                               'text'  => $lc_text);
     }
         /* BOF Zen4All Compare Products 1 of 1 */
-        if (PRODUCT_LIST_COMPARE > 0){
+        if (COMPARE_PRODUCT_STATUS == 'true' && COMPARE_PRODUCT_LIST_STATUS == 'true'){
           $lc_align = '';
           $lc_text = '<div id="compareSelectProductId_' . $listing->fields['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $listing->fields['products_id'] . '" onclick="compare(\'' . $listing->fields['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button></div>';
           $list_box_contents[$rows][] = array('align' => $lc_align,
