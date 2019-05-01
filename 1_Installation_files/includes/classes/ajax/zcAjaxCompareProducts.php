@@ -20,7 +20,6 @@ class zcAjaxCompareProducts extends base {
 // add new products selected
   public function addProduct() {
     $compareProductsArray = (isset($_SESSION['compareProducts']) ? $_SESSION['compareProducts'] : '');
-    $returndata['toApi'] = $_POST;
     $selected = (int)$_POST['compare_id'];
     $compare_array = array();
     $compare_warning = '';
@@ -47,7 +46,6 @@ class zcAjaxCompareProducts extends base {
 
     return([
       'data' => $result,
-      'toApi' => $returndata['toApi'],
       'button' => $button
     ]);
   }
