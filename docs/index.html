@@ -2,125 +2,164 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Products</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--    <link href="css/style.css" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Compare Products 1.1.0 RC 1</title>
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-      <h1>Compare Products</h1>
-      <div class="row">
-        <ul>
-          <li>Development Version by Zen4All</li>
-          <li>Copyright &copy; 2008-2018 <a href="https://zen4all.nl" target="_blank" title="Zen4All">Zen4All</a>. All rights reserved.</li>
-        </ul>
-      </div>
-      <hr>
-      <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread" target="_blank" title="Compare Products">https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread</a></p>
-      <p>Download location: <a href="https://www.zen-cart.com/downloads.php?do=file&id=1273" target="_blank">https://www.zen-cart.com/downloads.php?do=file&id=1273</a></p>
-      <div class="tab-container" id="outer-container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab">Introduction</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="specifications-tab" data-toggle="tab" href="#specifications" role="tab">Specifications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="examples-tab" data-toggle="tab" href="#examples" role="tab">Examples</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="installation-tab" data-toggle="tab" href="#installation" role="tab">Installation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="resources-tab" data-toggle="tab" href="#resources" role="tab">Resources</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="version-tab" data-toggle="tab" href="#version" role="tab">Version History</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="faqs-tab" data-toggle="tab" href="#faqs" role="tab">FAQs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="support-tab" data-toggle="tab" href="#support" role="tab">Support</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="donations-tab" data-toggle="tab" href="#donations" role="tab">Donations</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane container fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
-            <p>This contribution is a Compare Products feature that adds a button under the products image for the listing pages. When clicking the button it will add it to the session as something the customer will want to compare later with other products.</p>
-          </div>
-          <div class="tab-pane container fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
-            <table class="table table-sm">
-              <tr>
-                <td>Company:</td>
-                <td>Zen4All</td>
-              </tr>
-              <tr>
-                <td>Author:</td>
-                <td>Erik</td>
-              </tr>
-              <tr>
-                <td>Version:</td>
-                <td>2.0.0</td>
-              </tr>
-              <tr>
-                <td>Last Updated:</td>
-                <td>November 10, 2018</td>
-              </tr>
-              <tr>
-                <td>Zen Cart Version:</td>
-                <td>v1.5.5f</td>
-              </tr>
-              <tr>
-                <td>PHP Compatible:</td>
-                <td>&GreaterEqual; 5.6</td>
-              </tr>
-            </table>
-          </div>
-          <div class="tab-pane container fade" id="examples" role="tabpanel" aria-labelledby="examples-tab">
-            <p>I have setup a demo cart with it plugged in. The cart is a default install of Zen cart 1.5.5f with the demo pack.</p>
-            <p><a href="https://demoshop.zen4all.nl/" title="example" target="_blank">Zen4All Zen Cart Demo Shop</a></p>
-          </div>
-          <div class="tab-pane container fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
-            <p>To install change the folder YOUR_TEMPLATE to the appropriate name. Then just upload the files to your store.</p>
-            <p>The run.sql.txt file can be ran via the admin in admin->tools->install sql patches</p>
-          </div>
-          <div class="tab-pane container fade" id="version" role="tabpanel" aria-labelledby="version-tab">
-            <ul>
-              <li>1.0.0
-                <ul>
-                  <li>This addon was created as a starting point. I do have a lot of ideas that I would like to put into it, just a little short on time for now.</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="tab-pane container fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
-            <p>n/a</p>
-          </div>
-          <div class="tab-pane container fade" id="support" role="tabpanel" aria-labelledby="support-tab">
-            <p>Zen cart Forums.</p>
-          </div>
-          <div class="tab-pane container fade" id="donations" role="tabpanel" aria-labelledby="donations-tab">
-            <p>If you find the mod useful than donations are always greatly appreciated.</p>
-            <p>Donate to<br> Zen4All</p>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="HSA6F7SK2W8EC">
-              <input type="image" src="https://www.paypalobjects.com/en_US/NL/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
-              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>
-
-            <p>Donations help in more time being used to develop the features being contributed to the community along with making them compatible with future releases.</p>
-          </div>
-          <div class="tab-pane container fade in" id="license" role="tabpanel" aria-labelledby="license-tab">
-            <p>GNU General Public License. Refer to the LICENSE file included in the zip.</p>
+    <div class="container-fluid">
+      <div class="card bg-light">
+        <div class="card-header">
+      <h1 class="card-title">Compare Products</h1>
+          <div class="pos_rel">
+            <div id="downloads">
+              <a class="zip_download_link" href="https://github.com/Zen4All-nl/Compare-Products-for-Zen-Cart/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Zen4All-nl/Compare-Products-for-Zen-Cart/tarball/master">Download this project as a tar.gz file</a>
+            </div>
           </div>
         </div>
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="Tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="installation-tab" data-toggle="tab" href="#installation" role="tab" aria-controls="installation" aria-selected="false">Installation Instructions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="setup-tab" data-toggle="tab" href="#setup" role="tab" aria-controls="setup" aria-selected="false">Configuration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="credits-tab" data-toggle="tab" href="#credits" role="tab" aria-controls="credits" aria-selected="false">Credits & History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="license-tab" data-toggle="tab" href="#license" role="tab" aria-controls="credits" aria-selected="false">License</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="donations-tab" data-toggle="tab" href="#donations" role="tab">Donations</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="TabContent">
+            <div class="text-right">
+              <a href="https://www.zen-cart.com/forum/showthread.php?p=918403" title="Support Thread" target="_blank" class="btn btn-info" role="button">Support Thread</a>
+              <a href="https://github.com/Zen4All-nl/Zen-Cart-Product-Finder" title="View on GitHub" target="_blank" class="btn btn-info" role="button">View on GitHub <i class="fa fa-github fa-lg"></i></a>
+            </div>
+            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+              <h2>What does this mod do?</h2>
+            <p>This contribution is a Compare Products feature that adds a button under the products image for the listing pages. When clicking the button it will add it to the session as something the customer will want to compare later with other products.</p>
+            </div>
+            <div class="tab-pane fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
+              <h2>Installation</h2>
+              <ul class="nav nav-tabs" id="TabInstallation" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="new-install-tab" data-toggle="tab" href="#new-install" role="tab" aria-controls="new-install" aria-selected="true">New install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="upgrade-tab" data-toggle="tab" href="#upgrade" role="tab" aria-controls="upgrade" aria-selected="false">Upgrade</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="un-install-tab" data-toggle="tab" href="#un-install" role="tab" aria-controls="un-install" aria-selected="false">Un-install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="file-list-tab" data-toggle="tab" href="#file-list" role="tab" aria-controls="file-list" aria-selected="false">File List</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="TabInstallationContent">
+                <div class="tab-pane fade show active" id="new-install" role="tabpanel" aria-labelledby="new-install-tab">
+                  <h3>New install</h3>
+                  <p><strong>BACKUP FILES AND DATABASE</strong></p>
+                  <p>Copy the files into the correct directories.<br />
+                    The files marked with the YOUR_TEMPLATE_NAME path need to go into your template directories, NOT into directories literally called &quot;YOUR_TEMPLATE_NAME&quot;.</p>
+                  <p>There are some database changes these will auto install as soon as you log in to your admin.</p>
+                </div>
+                <div class="tab-pane fade" id="upgrade" role="tabpanel" aria-labelledby="upgrade-tab">
+                  <h3>Upgrade</h3>
+                  <p>When upgrading from a previous version, please use the file list as a guide to see which file have been changed. After aplying the file changes, log in to your Zen Cart admin, to complete the installation. The database changes, if needed, will be executed automatically</p>
+                </div>
+                <div class="tab-pane fade" id="un-install" role="tabpanel" aria-labelledby="un-install-tab">
+                  <h3>Un-install</h3>
+                  <p>Use the file list to remove all the files, and changes made for this mod. Then log in to your Zen Cart Admin, and run the product_finder_uninstall.sql (found in the uninstall folder) in Admin=>Tools=>Install SQL Patches</p>
+                </div>
+                <div class="tab-pane fade" id="file-list" role="tabpanel" aria-labelledby="file-list-tab">
+                  <h3>File List</h3>
+                  <table class="dc" cellspacing="0" cellpadding="0">
+                    <thead>
+                      <tr class="SectionAll">
+                        <th class="DirItemHeader">Version 0.92</th>
+                        <th class="DirItemHeader"></th>
+                        <th class="DirItemHeader">Version 1.0.0</th>
+                        <th class="DirItemHeader">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="setup" role="tabpanel" aria-labelledby="setup-tab">
+              <h2>Configuration</h2>
+              <h2>Support</h2>
+              <p>From the community only at <a href="https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread" target="_blank">https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread</a></p>
+            </div>
+            <div class="tab-pane fade" id="credits" role="tabpanel" aria-labelledby="credits-tab">
+              <h2>Version History</h2>
+              <table>
+                <tr>
+                  <td>Version: </td>
+                  <td>&nbsp;</td>
+                  <td>1.0.0</td>
+                </tr>
+                <tr>
+                  <td>Release Date: </td>
+                  <td>&nbsp;</td>
+                  <td>28-04-2019</td>
+                </tr>
+                <tr>
+                  <td>Zen Cart Versions: </td>
+                  <td>&nbsp;</td>
+                  <td>1.5.5, 1.5.6</td>
+                </tr>
+                <tr>
+                  <td>Author: </td>
+                  <td>&nbsp;</td>
+                  <td><a href="https://zen4all.nl" target="_blank">Zen4All</a></td>
+                </tr>
+                <tr>
+                  <td>Changes: </td>
+                  <td>&nbsp;</td>
+                  <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <hr>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="license" role="tabpanel" aria-labelledby="license-tab">
+              <ul>
+                <li>License: GPL 2.0 as per included <a href="../LICENSE" target="_blank">LICENSE</a></li>
+                <li>Support Thread: <a href="https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread" target="_blank">https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread</a></li>
+              </ul>
+            </div>
+            <div class="tab-pane container fade" id="donations" role="tabpanel" aria-labelledby="donations-tab">
+              <p>If you find the mod useful than donations are always greatly appreciated.</p>
+              <p>Donate to<br> Zen4All</p>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="HSA6F7SK2W8EC">
+                <input type="image" src="https://www.paypalobjects.com/en_US/NL/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+              </form>
+              <p>Donations help in more time being used to develop the features being contributed to the community along with making them compatible with future releases.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-sm-center">Copyright 2019 <a href="https://zen4all.nl" target="_blank">Zen4All</a></div>
       </div>
     </div>
     <script src="jscript/jquery-3.3.1.min.js"></script>
