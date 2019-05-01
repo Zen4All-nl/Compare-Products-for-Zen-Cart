@@ -32,10 +32,10 @@ if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
                                m.manufacturers_name
                         FROM " . TABLE_PRODUCTS . " p
                         LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON p.products_id = pd.products_id
+                          AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
                         LEFT JOIN " . TABLE_MANUFACTURERS . " m ON p.manufacturers_id = m.manufacturers_id
                         WHERE p.products_status = 1
-                        AND p.products_id = " . (int)$value . "
-                        AND pd.language_id = " . (int)$_SESSION['languages_id'];
+                        AND p.products_id = " . (int)$value;
 
       $products = $db->Execute($productsQuery);
 
