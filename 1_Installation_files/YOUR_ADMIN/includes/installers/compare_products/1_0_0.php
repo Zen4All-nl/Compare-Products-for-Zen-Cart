@@ -21,16 +21,29 @@ if (!zen_page_key_exists($admin_page)) {
   }
 }
 
-/* If your checking for a field
- * global $sniffer;
- * if (!$sniffer->field_exists(TABLE_SOMETHING, 'column'))  $db->Execute("ALTER TABLE " . TABLE_SOMETHING . " ADD column varchar(32) NOT NULL DEFAULT 'both';");
- */
+/* If your checking for a field */
+global $sniffer;
+if (!$sniffer->field_exists(TABLE_CONFIGURATION, 'COMPARE_VALUE_COUNT')) {
+  $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
+                SET configuration_key = 'COMPARE_PRODUCTS_VALUE_COUNT',
+                    configuration_group_id = " . $configuration_group_id . ",
+                    sort_order = 2
+                WHERE configuration_key = 'COMPARE_VALUE_COUNT'");
+}
+if (!$sniffer->field_exists(TABLE_CONFIGURATION, 'COMPARE_DESCRIPTION')) {
+  $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
+                SET configuration_key = 'COMPARE_PRODUCTS_DESCRIPTION',
+                    configuration_group_id = " . $configuration_group_id . ",
+                    sort_order = 3
+                WHERE configuration_key = 'COMPARE_DESCRIPTION'");
+}
+
 /*
  * For adding a configuration value
  */
 $db->Execute("INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function)
-VALUES ('Enable Product Compare', 'COMAPRE_STATUS', 'false', 'If true, the Compare buttons will be shown in the shop at the selected pages (depending on the settings below).', '19', '1', now(), 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-       ('Max Products to Compare', 'COMPARE_VALUE_COUNT', '4', 'The number of products to compare at one time.', '19', '2', now(), ''),
-       ('Max Products to Compare', 'COMPARE_DESCRIPTION', '150', 'How many characters max to show of the products description.', '19', '3', now(), ''),
-       ('Enable Product Compare on Product Listing', 'COMAPRE_STATUS_PRODUCT_LISTING', 'false', 'If true, the Compare buttons will be shown on the Product Listing pages.', '19', '4', now(), 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-       ('Product Compare', 'DEFINE_COMPARE_STATUS', '1', 'Enable the Product Compare Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '84', now(), 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');");
+              VALUES ('Enable Product Compare', 'COMAPRE_STATUS', 'false', 'If true, the Compare buttons will be shown in the shop at the selected pages (depending on the settings below).', " . $configuration_group_id . ", 1, now(), 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+                     ('Max Products to Compare', 'COMPARE_PRODUCTS_VALUE_COUNT', '4', 'The number of products to compare at one time.', " . $configuration_group_id . ", 2, now(), ''),
+                     ('Max Products to Compare', 'COMPARE_PRODUCTS_DESCRIPTION', '150', 'How many characters max to show of the products description.', " . $configuration_group_id . ", 3, now(), ''),
+                     ('Enable Product Compare on Product Listing', 'COMAPRE_STATUS_PRODUCT_LISTING', 'false', 'If true, the Compare buttons will be shown on the Product Listing pages.', " . $configuration_group_id . ", 4, now(), 'zen_cfg_select_option(array(\'true\', \'false\'),'),
+                     ('Product Compare', 'DEFINE_COMPARE_STATUS', '1', 'Enable the Product Compare Link/Text?<br />0= Link ON, Define Text OFF<br />1= Link ON, Define Text ON<br />2= Link OFF, Define Text ON<br />3= Link OFF, Define Text OFF', '25', '84', now(), 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\'),');");
