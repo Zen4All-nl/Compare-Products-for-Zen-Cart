@@ -27,7 +27,7 @@ class zcAjaxCompareProducts extends base {
 
     include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/compare.php');
 
-    if ($comp_value_count < COMPARE_VALUE_COUNT) {
+    if ($comp_value_count < COMPARE_PRODUCTS_VALUE_COUNT) {
       $compare_array[] = $selected;
       if ($compareProductsArray != '') {
         foreach ($compareProductsArray as $compareProduct) {
@@ -38,11 +38,11 @@ class zcAjaxCompareProducts extends base {
       }
       $_SESSION['compareProducts'] = array_unique($compare_array);
     } else {
-      $compare_warning = '<div id="compareWarning">' . COMPARE_WARNING_START . COMPARE_VALUE_COUNT . COMPARE_WARNING_END . '</div>';
+      $compare_warning = '<div id="compareWarning">' . COMPARE_WARNING_START . COMPARE_PRODUCTS_VALUE_COUNT . COMPARE_WARNING_END . '</div>';
     }
     $result = $this->getProducts($_SESSION['compareProducts']);
 
-    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'removeProduct\')"><i class="fa fa-minus"></i> ' . COMPARE_DEFAULT .'</button>';
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'removeProduct\')"><i class="fa fa-minus"></i> ' . COMPARE_DEFAULT . '</button>';
 
     return([
       'data' => $result,
@@ -54,18 +54,20 @@ class zcAjaxCompareProducts extends base {
   public function removeProduct() {
     $selected = (int)$_POST['compare_id'];
     $newCompareArray = [];
-    foreach ($_SESSION['compareProducts'] as $value) {
-      if ($value != $selected) {
-        $newCompareArray[] = $value;
+    if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
+      foreach ($_SESSION['compareProducts'] as $value) {
+        if ($value != $selected) {
+          $newCompareArray[] = $value;
+        }
       }
     }
     if (!empty($newCompareArray)) {
-    $_SESSION['compareProducts'] = $newCompareArray;
+      $_SESSION['compareProducts'] = $newCompareArray;
     } else {
       $_SESSION['compareProducts'] = '';
     }
 
-    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT .'</button>';
+    $button = '<button type="button" id="buttonCompareSelectProductId_' . $selected . '" onclick="compare(\'' . $selected . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button>';
 
     $result = $this->getProducts($_SESSION['compareProducts']);
     return([

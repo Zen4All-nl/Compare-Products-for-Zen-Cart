@@ -14,7 +14,7 @@ define('COMPARE_MANUFACTURER', 'Manufacturer: ');
 define('COMPARE_DESC', 'Description: ');
 define('COMPARE_DEFAULT', 'Compare');
 define('COMPARE_REMOVE', 'remove');
-define('COMPARE_COUNT', 'up to ' . COMPARE_VALUE_COUNT . ' items');
+define('COMPARE_COUNT', 'up to ' . COMPARE_PRODUCTS_VALUE_COUNT . ' items');
 define('COMPARE_WARNING_START', 'only ');
 define('NOTHING_TO_COMPARE', '<div class="compNothing">No products to compare</div>');
 define('COMPARE_WARNING_END', ' items can be compared at one time');
