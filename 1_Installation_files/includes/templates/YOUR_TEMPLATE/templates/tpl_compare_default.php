@@ -16,6 +16,15 @@
 
     <?php
     if (!empty($_SESSION['compareProducts'])) {
+      $compName = '';
+      $compImage = '';
+      $compDescription = '';
+      $compModel = '';
+      $compWeight = '';
+      $compQuantity = '';
+      $compPrice = '';
+      $compManufacturer = '';
+      $compRemove = '';
       // create our table rows of data
       foreach ($compareResult as $item) {
 
