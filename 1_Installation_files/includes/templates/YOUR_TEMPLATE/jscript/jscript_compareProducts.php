@@ -29,7 +29,7 @@
                                         WHERE p.products_id = " . (int)$value);
     ?>
       compareResultDiv += '        <div class="compareAdded">' + "\n";
-      compareResultDiv += '          <a href="<?php echo zen_href_link(zen_get_info_page($product_comp_image->fields['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($product_comp_image->fields['master_categories_id'])) . '&products_id=' . $product_comp_image->fields['products_id']); ?>"><?php echo zen_image(DIR_WS_IMAGES . $product_comp_image->fields['products_image'], $product_comp_image->fields['products_name'], '', '35', 'class="listingProductImage"'); ?></a>' + "\n";
+      compareResultDiv += '          <a href="<?php echo zen_href_link(zen_get_info_page($product_comp_image->fields['products_id']), 'cPath=' . (zen_get_generated_category_path_rev($product_comp_image->fields['master_categories_id'])) . '&products_id=' . $product_comp_image->fields['products_id']); ?>"><?php echo zen_image(DIR_WS_IMAGES . $product_comp_image->fields['products_image'], addslashes($product_comp_image->fields['products_name']), '', '35', 'class="listingProductImage"'); ?></a>' + "\n";
       compareResultDiv += '          <div>' + "\n";
       compareResultDiv += '            <button type="button" onclick="compare(\'<?php echo $product_comp_image->fields['products_id']; ?>\', \'removeProduct\');" title="remove" class="btn btn-default btn-xs"> <?php echo COMPARE_REMOVE; ?></button>' + "\n";
       compareResultDiv += '          </div>' + "\n";
