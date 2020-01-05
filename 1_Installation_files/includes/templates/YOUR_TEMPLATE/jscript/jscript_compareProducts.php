@@ -43,9 +43,7 @@
 
   $(document).ready(function () {
     $('#filter-wrapper').after(compareResultDiv);
-  });
 
-  $(document).ready(function () {
     let javascriptCompareProductsArray = '';
 <?php
 if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
