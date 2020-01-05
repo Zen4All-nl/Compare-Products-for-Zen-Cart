@@ -24,7 +24,7 @@ class CompareProductsObserver extends base {
         foreach ($listing as $item) {
           $rows++;
           $lc_align = '';
-          $lc_text = '<div id="compareSelectProductId_' . $item['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $item['products_id'] . '" onclick="compare(\'' . $item['products_id'] . '\',\'addProduct\')"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button></div>';
+          $lc_text = '<div id="compareSelectProductId_' . $item['products_id'] . '" class="compareSelect list-compare"><button type="button" id="buttonCompareSelectProductId_' . $item['products_id'] . '" onclick="compare(\'' . $item['products_id'] . '\',\'addProduct\');"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button></div>';
           $list_box_contents[$rows][] = array('align' => $lc_align,
             'params' => 'class="productListing-data"',
             'text' => $lc_text);
