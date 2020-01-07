@@ -23,6 +23,9 @@ class CompareProductsObserver extends base {
       if (defined('COMPARE_PRODUCTS_ALL_STATUS') && COMPARE_PRODUCTS_ALL_STATUS == 'true') {
         $this->attach($this, array('NOTIFY_PRODUCTS_ALL_COMPARE'));
       }
+      if (defined('COMPARE_PRODUCTS_DETAIL_STATUS') && COMPARE_PRODUCTS_DETAIL_STATUS == 'true') {
+        $this->attach($this, array('NOTIFY_PRODUCTS_DETAIL_COMPARE'));
+      }
     }
   }
 
@@ -44,9 +47,13 @@ class CompareProductsObserver extends base {
       case 'NOTIFY_PRODUCTS_FEATURED_COMPARE':
       case 'NOTIFY_PRODUCTS_NEW_COMPARE':
       case 'NOTIFY_PRODUCTS_ALL_COMPARE':
-
         echo '<div id="compareSelectProductId_' . $p1->fields['products_id'] . '" class="compareSelect list-compare">';
         echo '<button type="button" id="buttonCompareSelectProductId_' . $p1->fields['products_id'] . '" onclick="compare(\'' . $p1->fields['products_id'] . '\', \'addProduct\');"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button>';
+        echo '</div>';
+        break;
+      case 'NOTIFY_PRODUCTS_DETAIL_COMPARE':
+        echo '<div id="compareSelectProductId_' . $p1 . '" class="compareSelect list-compare">';
+        echo '<button type="button" id="buttonCompareSelectProductId_' . $p1 . '" onclick="compare(\'' . $p1 . '\', \'addProduct\');"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button>';
         echo '</div>';
         break;
       default:
