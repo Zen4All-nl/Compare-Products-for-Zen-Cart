@@ -194,7 +194,7 @@
           </div>
 <?php } ?>
             <?php /* BOF Zen4All Compare Products 1of 1 */ ?>
-            <?php $zco_notifier->notify('NOTIFY_PRODUCTS_NEW_END', $products_new); ?>
+            <?php $zco_notifier->notify('NOTIFY_PRODUCTS_NEW_COMPARE', $products_new); ?>
             <?php /* EOF Zen4All Compare Products 1of 1 */ ?>
 
 </div>

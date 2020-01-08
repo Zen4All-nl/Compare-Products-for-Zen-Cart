@@ -58,7 +58,7 @@
     }
     ?>
   </div>
-  <?php if (DEFINE_COMPARE_STATUS >= '1' && DEFINE_COMPARE_STATUS <= '2') { ?>
+  <?php if (DEFINE_COMPARE_STATUS == '1' || DEFINE_COMPARE_STATUS == '2') { ?>
     <div id="productCompareNoticeContent" class="content">
       <?php
       /**

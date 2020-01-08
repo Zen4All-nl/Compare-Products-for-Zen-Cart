@@ -15,13 +15,16 @@ class CompareProductsObserver extends base {
         $this->attach($this, array('NOTIFY_PRODUCT_LISTING_END'));
       }
       if (defined('COMPARE_PRODUCTS_FEATURED_STATUS') && COMPARE_PRODUCTS_FEATURED_STATUS == 'true') {
-        $this->attach($this, array('NOTIFY_PRODUCTS_FEATURED_END'));
+        $this->attach($this, array('NOTIFY_PRODUCTS_FEATURED_COMPARE'));
       }
       if (defined('COMPARE_PRODUCTS_NEW_STATUS') && COMPARE_PRODUCTS_NEW_STATUS == 'true') {
-        $this->attach($this, array('NOTIFY_PRODUCTS_NEW_END'));
+        $this->attach($this, array('NOTIFY_PRODUCTS_NEW_COMPARE'));
       }
       if (defined('COMPARE_PRODUCTS_ALL_STATUS') && COMPARE_PRODUCTS_ALL_STATUS == 'true') {
-        $this->attach($this, array('NOTIFY_PRODUCTS_ALL_END'));
+        $this->attach($this, array('NOTIFY_PRODUCTS_ALL_COMPARE'));
+      }
+      if (defined('COMPARE_PRODUCTS_DETAIL_STATUS') && COMPARE_PRODUCTS_DETAIL_STATUS == 'true') {
+        $this->attach($this, array('NOTIFY_PRODUCTS_DETAIL_COMPARE'));
       }
     }
   }
@@ -41,12 +44,16 @@ class CompareProductsObserver extends base {
             'text' => $lc_text);
         }
         break;
-      case 'NOTIFY_PRODUCTS_FEATURED_END':
-      case 'NOTIFY_PRODUCTS_NEW_END':
-      case 'NOTIFY_PRODUCTS_ALL_END':
-
+      case 'NOTIFY_PRODUCTS_FEATURED_COMPARE':
+      case 'NOTIFY_PRODUCTS_NEW_COMPARE':
+      case 'NOTIFY_PRODUCTS_ALL_COMPARE':
         echo '<div id="compareSelectProductId_' . $p1->fields['products_id'] . '" class="compareSelect list-compare">';
         echo '<button type="button" id="buttonCompareSelectProductId_' . $p1->fields['products_id'] . '" onclick="compare(\'' . $p1->fields['products_id'] . '\', \'addProduct\');"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button>';
+        echo '</div>';
+        break;
+      case 'NOTIFY_PRODUCTS_DETAIL_COMPARE':
+        echo '<div id="compareSelectProductId_' . $p1 . '" class="compareSelect list-compare">';
+        echo '<button type="button" id="buttonCompareSelectProductId_' . $p1 . '" onclick="compare(\'' . $p1 . '\', \'addProduct\');"><i class="fa fa-plus"></i> ' . COMPARE_DEFAULT . '</button>';
         echo '</div>';
         break;
       default:
