@@ -2,10 +2,11 @@
 
 /**
  * Compare Products
+ *
+ * @copyright Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version 1.1.0
- * @author Zen4All
- * @copyright Copyright 2003-2014 Zen Cart Development Team
- * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -13,7 +14,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 $module_constant = 'COMPARE_PRODUCTS_VERSION';
 $module_installer_directory = DIR_FS_ADMIN . 'includes/installers/compare_products';
-$module_name = "Compare Products"; 
+$module_name = 'Compare Products';
 $zencart_com_plugin_id = 1273;
 
 $configuration_group_id = '';

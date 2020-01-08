@@ -3,11 +3,10 @@
 /**
  * Compare Products
  *
- * @package page
- * @copyright Copyright 2003-2007 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: main_template_vars.php 2011-01-28 5:23:52MT brit (docreativedesign.com) $
+ * @version 1.1.0
  */
 if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
   $compare_info = array();
@@ -39,10 +38,10 @@ if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
 
     $products = $db->Execute($productsQuery);
 
-      foreach ($products->fields as $key => $item) {
-        $compareResult[$value][$key] = $item;
-      }
+    foreach ($products->fields as $key => $item) {
+      $compareResult[$value][$key] = $item;
     }
   }
+}
 
 require($template->get_template_dir('tpl_compare_default.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_compare_default.php');

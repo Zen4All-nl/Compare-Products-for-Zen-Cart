@@ -1,8 +1,13 @@
 <?php
 
-// use $configuration_group_id where needed
-// For Admin Pages
-
+/**
+ * Compare Products
+ *
+ * @copyright Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version 1.1.0
+ */
 $admin_page = 'configCompareProducts';
 // delete configuration menu
 $db->Execute("DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = '" . $admin_page . "' LIMIT 1;");
@@ -10,18 +15,18 @@ $db->Execute("DELETE FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = '" . $admin
 if (!zen_page_key_exists($admin_page)) {
   if ((int)$configuration_group_id > 0) {
     zen_register_admin_page($admin_page,
-        'BOX_CONFIGURATION_COMPARE_PRODUCTS',
-        'FILENAME_CONFIGURATION',
-        'gID=' . $configuration_group_id,
-        'configuration',
-        'Y',
-        $configuration_group_id);
+            'BOX_CONFIGURATION_COMPARE_PRODUCTS',
+            'FILENAME_CONFIGURATION',
+            'gID=' . $configuration_group_id,
+            'configuration',
+            'Y',
+            $configuration_group_id);
 
     $messageStack->add('Enabled MODULE Configuration Menu.', 'success');
   }
 }
 
-/* If your checking for a field */
+
 global $sniffer;
 if (!$sniffer->field_exists(TABLE_CONFIGURATION, 'COMPARE_VALUE_COUNT')) {
   $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
@@ -38,9 +43,6 @@ if (!$sniffer->field_exists(TABLE_CONFIGURATION, 'COMPARE_DESCRIPTION')) {
                 WHERE configuration_key = 'COMPARE_DESCRIPTION'");
 }
 
-/*
- * For adding a configuration value
- */
 $db->Execute("INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function)
               VALUES ('Enable Product Compare', 'COMAPRE_STATUS', 'false', 'If true, the Compare buttons will be shown in the shop at the selected pages (depending on the settings below).', " . $configuration_group_id . ", 1, now(), 'zen_cfg_select_option(array(\'true\', \'false\'),'),
                      ('Max Products to Compare', 'COMPARE_PRODUCTS_VALUE_COUNT', '4', 'The number of products to compare at one time.', " . $configuration_group_id . ", 2, now(), ''),

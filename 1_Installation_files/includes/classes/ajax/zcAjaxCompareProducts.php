@@ -1,13 +1,12 @@
 <?php
 
 /**
- * zcAjaxCompareProducts.php
- * ajax call to show products selected for comparison
+ * Compare Products
  *
- * @copyright Copyright 2003-2018 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: zAjaxCompareProducts.php 00001 2018-09-16  Zen4All (https://zen4all.nl)
+ * @version 1.1.0
  */
 class zcAjaxCompareProducts extends base {
 
@@ -18,7 +17,8 @@ class zcAjaxCompareProducts extends base {
   var $comp_value_count;
 
 // add new products selected
-  public function addProduct() {
+  public function addProduct()
+  {
     $compareProductsArray = (isset($_SESSION['compareProducts']) ? $_SESSION['compareProducts'] : '');
     $selected = (int)$_POST['compare_id'];
     $compare_array = array();
@@ -51,7 +51,8 @@ class zcAjaxCompareProducts extends base {
   }
 
 // remove products
-  public function removeProduct() {
+  public function removeProduct()
+  {
     $selected = (int)$_POST['compare_id'];
     $newCompareArray = [];
     if (isset($_SESSION['compareProducts']) && $_SESSION['compareProducts'] != '') {
@@ -76,7 +77,8 @@ class zcAjaxCompareProducts extends base {
     ]);
   }
 
-  private function getProducts($compareList) {
+  private function getProducts($compareList)
+  {
     global $db;
     $comp_images = '';
 // return new value for the session

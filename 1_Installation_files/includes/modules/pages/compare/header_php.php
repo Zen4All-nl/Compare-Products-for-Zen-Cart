@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Compare Page
+ * Compare Products
  *
- * @package page
- * @copyright Copyright 2003-2006 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ * @copyright Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: header_php.php 2018-09-17  Zen4All (https://zen4all.nl)
+ * @version 1.1.0
  */
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
