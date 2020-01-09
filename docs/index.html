@@ -41,12 +41,33 @@
           <div class="tab-content" id="TabContent">
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
               <h2>What does this mod do?</h2>
-              <p>This contribution is a Compare Products feature that adds a button under the products image for the listing pages. When clicking the button it will add it to the session as something the customer will want to compare later with other products.</p>
+              <p>This contribution is a Compare Products feature that adds a compare button to the products listing pages. When clicking the button it will add it to the session as something the customer will want to compare later with other products.</p>
+              <p>Compare buttons can be shown on multiple pages. Currently these pages are:</p>
+              <ul>
+                <li>Product info detail pages (all default product types)</li>
+                <li>Featured listing</li>
+                <li>All products listing</li>
+                <li>New products listing</li>
+              </ul>
+              <div class="row text-center text-lg-left">
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a href="images/1.gif" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="images/1_thumb.gif" alt="">
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a href="images/2.gif" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="images/2_thumb.gif" alt="">
+                  </a>
+                </div>
+              </div>
+              <hr class="mt-2 mb-5">
               <h2>Support</h2>
               <p>
                 <a href="https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread" title="Support Thread" target="_blank" class="btn btn-info" role="button">Support Thread</a>
                 <a href="https://github.com/Zen4All-nl/Zen-Cart-Product-Finder" title="View on GitHub" target="_blank" class="btn btn-info" role="button">View on GitHub <i class="fa fa-github fa-lg"></i></a>
               </p>
+              <hr class="mt-2 mb-5">
               <h2>Module Download</h2>
               <h3>From Zen Cart site</h3>
               <a class="btn btn-info" href="https://www.zen-cart.com/downloads.php?do=file&id=1273">
@@ -323,6 +344,18 @@
                         <td class="DirItemDefault"></td>
                       </tr>
                       <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;│</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;├</span>tpl_document_general_info_display.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;│</span></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;├</span>tpl_document_product_info_display.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
                         <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;└</span>tpl_index_product_list.php</td>
                         <td class="DirItemDefault"></td>
                         <td class="DirItemDefault"><span class="text-black">&nbsp;&nbsp;&nbsp;│</span></td>
@@ -343,7 +376,25 @@
                       <tr class="SectionMiddle">
                         <td class="DirItemDefault"></td>
                         <td class="DirItemDefault"></td>
-                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;└</span>tpl_modules_products_new_listing.php</td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;├</span>tpl_modules_products_new_listing.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;├</span>tpl_product_free_shipping_info_display.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;├</span>tpl_product_info_display.php</td>
+                        <td class="DirItemDefault"></td>
+                      </tr>
+                      <tr class="SectionMiddle">
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemDefault"></td>
+                        <td class="DirItemOrphan"><span class="text-black">&nbsp;&nbsp;&nbsp;└</span>tpl_product_info_display.php</td>
                         <td class="DirItemDefault"></td>
                       </tr>
                       <tr class="SectionMiddle">
@@ -456,11 +507,12 @@
             <div class="tab-pane fade" id="setup" role="tabpanel" aria-labelledby="setup-tab">
               <h2>Configuration</h2>
               <p>After copying all the file to your server you need to open your shops admin panel. This will install the needed database changes.<br>
-                 Next you need to enable the compare module. To do this you need to go to "Configuration => Compare Products".</p>
+                Next you need to enable the compare module. To do this you need to go to "Configuration => Compare Products".</p>
               <p>The first value to enable is the main switch: <strong>Enable Product Compare</strong>. This will turn the whole module <strong>on</strong> or <strong>off</strong>.</p>
-              <p>The next value to set is: <strong>Enable Product Compare on Product Listing</strong>. This will turn the display on the Product Listing Page <strong>on</strong> or <strong>off</strong>.</p>
-              <p></p>
-              <p></p>
+              <p>The next values to set are the switches for the different pages. These will turn the display on the different Product Listing Pages <strong>on</strong> or <strong>off</strong>.</p>
+              <p>There also a setting to sethow many prodcts can be compared at the same time.</p>
+              <p>A final setting is used to set howmany characters of the products description should be displayed on the compare page.</p>
+              <hr class="mt-2 mb-5">
               <h2>Support</h2>
               <p>From the community only at <a href="https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread" target="_blank">https://www.zen-cart.com/showthread.php?180977-Compare-multiple-products-support-thread</a></p>
             </div>
@@ -497,8 +549,16 @@
                       <li>Removed unneeded files (see the file-list)</li>
                       <li>Added an auto-installer for the database fields</li>
                       <li>Added a module version number to the database</li>
-                    </ul></td>
-                  <td>
+                      <li>Added ability to switch module (and parts of it) on or off</li>
+                      <li>Added compare buttons to:
+                        <ul>
+                          <li>Product info detail pages</li>
+                          <li>Featured listing</li>
+                          <li>All products listing</li>
+                          <li>New products listing</li>
+                        </ul>
+                      </li>
+                    </ul>
                   </td>
                 </tr>
                 <tr>
