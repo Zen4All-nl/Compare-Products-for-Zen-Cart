@@ -1,0 +1,45 @@
+.Wrap {white-space: nowrap;}
+img.AutoScale {max-width: 100%; max-height: 100%;}
+td {vertical-align: top; padding-left: 4px; padding-right: 4px;}
+tr.SectionGap td {font-size: 4px; border-left: none; border-top: none; border-bottom: 1px solid #000; border-right: 1px solid #000;}
+tr.SectionAll th {border-left: none; border-top: none; border-bottom: 1px solid #000; border-right: 1px solid #000;}
+tr.SectionBegin td {border-left: none; border-top: none; border-right: 1px solid #000;}
+tr.SectionEnd td {border-left: none; border-top: none; border-bottom: 1px solid #000; border-right: 1px solid #000;}
+tr.SectionMiddle td {border-left: none; border-top: none; border-right: 1px solid #000;}
+table.dc {border-top: 1px solid #000; border-left: 1px solid #000; width: 100%;}
+table.dc tr.SectionBegin td {border-bottom: 1px solid #c0c0c0;}
+table.dc tr.SectionMiddle td {border-bottom: 1px solid #c0c0c0;}
+th.DirItemHeader {color: #000; background-color: #e7e7e7; padding-top: 8px;}
+td.DirItemDefault {color: #000; background-color: #fff;}
+td.DirItemDiff {color: #f00; background-color: #fff;}
+td.DirItemNewer {color: #f00; background-color: #fff;}
+.DirItemOlder {color: #808080; background-color: #fff;}
+.DirItemOrphan {color: #6a00d5; background-color: #fff;}
+.DirItemSame {color: #000; background-color: #fff;}
+.text-black {color: #000;}
+.DirOlderExpanded {color: #b1b1b1;}
+.DirNewerExpanded {color: #f77a7a;}
+.DirOrphanExpanded {color: #6a00d5;}
+.DirSameExpanded {color:#757575;}
+.DirOrphanOlderExpanded {
+    background: #6a00d5;
+    background: -moz-linear-gradient(-45deg, #6a00d5 50%, #b1b1b1 50%);
+    background: -webkit-linear-gradient(-45deg, #6a00d5 50%,#b1b1b1 50%);
+    background: linear-gradient(135deg, #6a00d5 50%,#b1b1b1 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a00d5', endColorstr='#b1b1b1',GradientType=1 );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+.DirNewerOrphanExpanded {
+    background: #f77a7a;
+    background: -moz-linear-gradient(-45deg, #f77a7a 50%, #6a00d5 50%);
+    background: -webkit-linear-gradient(-45deg, #f77a7a 50%,#6a00d5 50%);
+    background: linear-gradient(135deg, #f77a7a 50%,#6a00d5 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f77a7a', endColorstr='#6a00d5',GradientType=1 );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}

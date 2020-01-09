@@ -1,0 +1,84 @@
+/**
+ * Compare Products
+ * @copyright Copyright 2020 Zen4All
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version 1.1.0
+ */
+.compareAdded {
+  float:right;
+  width:auto;
+  padding:0 5px;
+  margin:5px 0;
+  text-align:center;
+}
+
+.compareText {
+  padding:18px 0 0 5px;
+}
+
+.compareButton {
+  padding-top:20px;
+}
+
+#compareResult {
+  background:#ccc;
+  min-height:62px;
+}
+
+.compareAdded div {
+  background:#000;
+  color:#fff;
+  padding:2px;
+}
+
+.compareTitle {
+  padding:17px 0 0 5px;
+}
+
+#compareDefaultMainContent h4 {
+  font-size:1.2em;
+  text-align:center;
+}
+
+#compareDefaultMainContent h4 a {
+  text-decoration: none;
+}
+
+.compareImage {
+  text-align:center;
+}
+
+#compareDefaultMainContent td {
+  padding:5px;
+  vertical-align: top;
+}
+
+#compareDefaultMainContent th {
+  text-align:left;
+  padding:5px 10px 5px 5px;
+}
+
+.compareWrapper {
+  padding:5px;
+}
+
+.compNothing {
+  text-align:center;
+}
+
+#compareWarning {
+  background:#f5f5f5;
+  color:#f00;
+  text-align:center;
+  margin-bottom:5px;
+  padding:5px;
+}
+
+.list-compare {
+  margin: 5px 0;
+}
+
+.compareAdded div a:link {color:#fff; text-decoration:none;}
+.compareAdded div a:hover {color:#fff; text-decoration:underline; cursor:pointer;}
+.compareAdded div a:visited {}
+.compareAdded div a:active {}
